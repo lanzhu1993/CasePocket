@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rl_title"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_gradient_header_bg"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:id="@+id/header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_96"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:layout_centerInParent="true"
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:ellipsize="middle"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="标题"
+            android:textColor="@color/color_ffffff"
+            android:textSize="@dimen/space_40" />
+
+
+        <TextView
+            android:id="@+id/right"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:paddingLeft="@dimen/space_30"
+            android:paddingRight="@dimen/space_30"
+            android:text="更多"
+            android:textColor="@color/color_ffffff"
+            android:textSize="@dimen/space_32"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/title_right_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/space_10"
+            android:scaleType="centerInside"
+            android:visibility="visible"
+            android:layout_marginRight="@dimen/space_20" />
+
+        <ImageView
+            android:id="@+id/left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_back"
+            android:scaleType="centerCrop"
+            android:padding="@dimen/space_10"
+            android:gravity="center"
+            android:visibility="visible"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/main_search_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_90"
+        android:layout_below="@+id/header_layout"
+        android:background="@drawable/shape_gradient_header_bg"
+        android:visibility="gone">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_68"
+            android:layout_marginLeft="@dimen/space_20"
+            android:layout_marginRight="@dimen/space_20"
+            android:background="@drawable/shape_search_textview_bg"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/main_search_iv"
+                android:layout_width="@dimen/space_40"
+                android:layout_height="@dimen/space_40"
+                android:layout_centerVertical="true"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/icon_search" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/space_10"
+                android:layout_toRightOf="@+id/main_search_iv"
+                android:gravity="center"
+                android:text="输入时间或姓名搜索"
+                android:textColor="@color/color_999999"
+                android:textSize="@dimen/space_28" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

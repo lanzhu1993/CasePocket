@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_f3f3f3">
+
+    <com.busilinq.casepocket.widget.HeaderLayoutView
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_f3f3f3"
+        android:layout_below="@+id/header">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/color_f3f3f3">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_200"
+                android:layout_marginLeft="@dimen/space_20"
+                android:layout_marginRight="@dimen/space_20"
+                android:layout_marginTop="@dimen/space_30"
+                android:background="@drawable/shape_add_case_layout_bg">
+
+
+                <RelativeLayout
+                    android:id="@+id/addcase_default_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/space_160"
+                    android:layout_centerVertical="true"
+                    android:visibility="invisible">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/space_40"
+                        android:background="@drawable/shape_default_textview_bg"
+                        android:gravity="center"
+                        android:paddingRight="@dimen/space_20"
+                        android:text="默认"
+                        android:textColor="@color/color_ffffff"
+                        android:textSize="@dimen/space_28" />
+
+
+                    <TextView
+                        android:id="@+id/addcase_show_name_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/space_56"
+                        android:text=""
+                        android:textColor="@color/color_333333"
+                        android:textSize="@dimen/space_70" />
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:id="@+id/addcase_add_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true">
+
+                    <ImageView
+                        android:id="@+id/addcase_add_iv"
+                        android:layout_width="@dimen/space_60"
+                        android:layout_height="@dimen/space_60"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/space_56"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/icon_add_case" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/space_10"
+                        android:layout_toRightOf="@+id/addcase_add_iv"
+                        android:text="添加就诊人"
+                        android:textColor="@color/color_999999"
+                        android:textSize="@dimen/space_36" />
+
+                </RelativeLayout>
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/space_30"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/icon_next_arrow" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_30"
+                android:background="@color/color_ffffff"
+                android:orientation="vertical">
+
+                <!--就诊时间-->
+                <RelativeLayout
+                    android:id="@+id/addcase_date_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/space_90"
+                    android:layout_marginLeft="@dimen/space_20">
+
+                    <ImageView
+                        android:id="@+id/addcase_date_iv"
+                        style="@style/addcase_imageview_first_style"
+                        android:src="@mipmap/icon_date" />
+
+                    <TextView
+                        style="@style/addcase_textview_style"
+                        android:layout_toRightOf="@+id/addcase_date_iv"
+                        android:text="就诊时间" />
+
+
+                    <TextView
+                        android:id="@+id/addcase_date_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/space_20"
+                        android:layout_toLeftOf="@+id/addcase_date_iv1"
+                        android:text="2017-04-12"
+                        android:textColor="@color/color_333333"
+                        android:textSize="@dimen/space_32" />
+
+                    <ImageView
+                        android:id="@+id/addcase_date_iv1"
+                        style="@style/addcase_imagview_next_style"
+                        android:src="@mipmap/icon_next_arrow" />
+
+
+                    <ImageView
+                        style="@style/lay_divide_line_horizontal"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="@dimen/space_70" />
+
+                </RelativeLayout>
+
+                <!--就诊医院-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/space_90"
+                    android:layout_marginLeft="@dimen/space_20"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true">
+
+                    <ImageView
+                        android:id="@+id/addcase_hospital_iv"
+                        style="@style/addcase_imageview_first_style"
+                        android:src="@mipmap/icon_hospital" />
+
+                    <TextView
+                        android:id="@+id/addcase_hospital_tv"
+                        style="@style/addcase_textview_style"
+                        android:layout_toRightOf="@+id/addcase_hospital_iv"
+                        android:text="就诊医院" />
+
+
+                    <EditText
+                        android:id="@+id/addcase_hospital_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/space_20"
+                        android:layout_toLeftOf="@+id/addcase_hospital_iv1"
+                        android:layout_toRightOf="@+id/addcase_hospital_tv"
+                        android:background="@null"
+                        android:gravity="end"
+                        android:hint="请点击输入"
+                        android:padding="@dimen/space_10"
+                        android:singleLine="true"
+                        android:textColor="@color/color_333333"
+                        android:textColorHint="@color/color_aaaaaa"
+                        android:textSize="@dimen/space_32" />
+
+
+                    <ImageView
+                        android:id="@+id/addcase_hospital_iv1"
+                        style="@style/addcase_imagview_next_style"
+                        android:src="@mipmap/icon_next_arrow" />
+
+                    <ImageView
+                        style="@style/lay_divide_line_horizontal"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="@dimen/space_70" />
+
+                </RelativeLayout>
+
+                <!--就诊科室-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/space_90"
+                    android:layout_marginLeft="@dimen/space_20"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true">
+
+                    <ImageView
+                        android:id="@+id/addcase_offices_iv"
+                        style="@style/addcase_imageview_first_style"
+                        android:src="@mipmap/icon_offices" />
+
+                    <TextView
+                        android:id="@+id/addcase_offices_tv"
+                        style="@style/addcase_textview_style"
+                        android:layout_toRightOf="@+id/addcase_offices_iv"
+                        android:text="就诊科室" />
+
+
+                    <EditText
+                        android:id="@+id/addcase_department_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/space_20"
+                        android:layout_toLeftOf="@+id/addcase_offices_iv1"
+                        android:layout_toRightOf="@+id/addcase_offices_tv"
+                        android:background="@null"
+                        android:gravity="end"
+                        android:hint="请点击输入"
+                        android:padding="@dimen/space_10"
+                        android:singleLine="true"
+                        android:textColor="@color/color_333333"
+                        android:textColorHint="@color/color_aaaaaa"
+                        android:textSize="@dimen/space_32" />
+
+
+                    <ImageView
+                        android:id="@+id/addcase_offices_iv1"
+                        style="@style/addcase_imagview_next_style"
+                        android:src="@mipmap/icon_next_arrow" />
+
+
+                    <ImageView
+                        style="@style/lay_divide_line_horizontal"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="@dimen/space_70" />
+
+                </RelativeLayout>
+
+                <!--病历上传-->
+                <RelativeLayout
+                    android:id="@+id/addcase_photo_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/space_90"
+                    android:layout_marginLeft="@dimen/space_20">
+
+                    <ImageView
+                        android:id="@+id/addcase_upload_iv"
+                        style="@style/addcase_imageview_first_style"
+                        android:src="@mipmap/icon_upload" />
+
+                    <TextView
+                        android:id="@+id/addcase_upload_tv"
+                        style="@style/addcase_textview_style"
+                        android:layout_toRightOf="@+id/addcase_upload_iv"
+                        android:text="病历上传" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/space_20"
+                        android:layout_toRightOf="@+id/addcase_upload_tv"
+                        android:text="(不超过9张)"
+                        android:textColor="@color/color_aaaaaa"
+                        android:textSize="@dimen/space_32" />
+
+                    <ImageView
+                        android:id="@+id/addcase_upload_iv1"
+                        android:layout_width="@dimen/space_50"
+                        android:layout_height="@dimen/space_50"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/space_20"
+                        android:layout_toLeftOf="@+id/addcase_upload_iv2"
+                        android:scaleType="centerCrop"
+                        android:src="@mipmap/icon_camera" />
+
+                    <ImageView
+                        android:id="@+id/addcase_upload_iv2"
+                        style="@style/addcase_imagview_next_style"
+                        android:src="@mipmap/icon_next_arrow" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/color_ffffff"
+                    android:orientation="vertical">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/addcase_recylerview"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/space_20" />
+
+                    <ImageView
+                        style="@style/lay_divide_line_horizontal"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="@dimen/space_20" />
+
+                    <EditText
+                        android:id="@+id/addcase_desc_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/space_160"
+                        android:background="@null"
+                        android:hint="有什么想说的点击这里输入吧"
+                        android:gravity="top"
+                        android:paddingBottom="@dimen/space_20"
+                        android:paddingLeft="@dimen/space_20"
+                        android:paddingRight="@dimen/space_20"
+                        android:paddingTop="@dimen/space_5"
+                        android:textColor="@color/color_333333"
+                        android:textColorHint="@color/color_aaaaaa"
+                        android:textSize="@dimen/space_32"
+                        android:visibility="gone" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/space_20"
+    android:layout_marginRight="@dimen/space_20"
+    android:layout_marginTop="@dimen/space_20"
+    android:background="@drawable/shape_member_layout_bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/item_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true">
+
+            <TextView
+                android:id="@+id/item_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/space_38"
+                android:layout_marginTop="@dimen/space_34"
+                android:text="阿斯顿"
+                android:textColor="@color/color_333333"
+                android:textSize="@dimen/space_44" />
+
+            <TextView
+                android:id="@+id/item_sex_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/item_name_tv"
+                android:layout_marginLeft="@dimen/space_28"
+                android:layout_toRightOf="@+id/item_name_tv"
+                android:text="男"
+                android:textColor="@color/color_aaaaaa"
+                android:textSize="@dimen/space_28" />
+
+
+            <TextView
+                android:id="@+id/item_age_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/item_name_tv"
+                android:layout_marginLeft="@dimen/space_20"
+                android:layout_toRightOf="@+id/item_sex_tv"
+                android:text="26"
+                android:textColor="@color/color_aaaaaa"
+                android:textSize="@dimen/space_28" />
+
+
+            <TextView
+                android:id="@+id/item_idcard_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/item_name_tv"
+                android:layout_marginBottom="@dimen/space_30"
+                android:layout_marginLeft="@dimen/space_38"
+                android:layout_marginTop="@dimen/space_20"
+                android:text="522121199310173333"
+                android:textColor="@color/color_aaaaaa"
+                android:textSize="@dimen/space_28" />
+
+
+            <RadioButton
+                android:id="@+id/item_check_rb"
+                android:layout_width="@dimen/space_60"
+                android:layout_height="@dimen/space_60"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/space_30"
+                android:background="@drawable/selector_sex_bg"
+                android:button="@null" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_3"
+            android:background="@drawable/shape_dash_line_bg"
+            android:layerType="software" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <ImageView
+                android:id="@+id/item_people"
+                android:layout_width="@dimen/space_104"
+                android:layout_height="@dimen/space_40"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="@dimen/space_25"
+                android:layout_marginLeft="@dimen/space_38"
+                android:layout_marginTop="@dimen/space_25"
+                android:src="@mipmap/icon_default_people" />
+
+
+            <Button
+                android:id="@+id/item_delete"
+                android:layout_width="@dimen/space_140"
+                android:layout_height="@dimen/space_60"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="@dimen/space_15"
+                android:layout_marginRight="@dimen/space_10"
+                android:layout_marginTop="@dimen/space_15"
+                android:layout_toLeftOf="@+id/item_edit"
+                android:background="@mipmap/icon_delete" />
+
+            <Button
+                android:id="@+id/item_edit"
+                android:layout_width="@dimen/space_140"
+                android:layout_height="@dimen/space_60"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="@dimen/space_15"
+                android:layout_marginRight="@dimen/space_30"
+                android:layout_marginTop="@dimen/space_15"
+                android:background="@mipmap/icon_edit" />
+
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

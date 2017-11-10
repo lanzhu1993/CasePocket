@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_f3f3f3"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <com.busilinq.casepocket.widget.HeaderLayoutView
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/space_24"
+        android:layout_marginTop="@dimen/space_30"
+        android:text="请如实填写以下信息,以便后期为您更好的管理"
+        android:textColor="@color/color_aaaaaa"
+        android:textSize="@dimen/space_28" />
+
+    <!--姓名-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_height="@dimen/space_90"
+        android:background="@color/color_ffffff">
+
+        <TextView
+            android:id="@+id/addmemb_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/space_20"
+            android:text="姓名"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/space_30" />
+
+
+        <EditText
+            android:id="@+id/addmemb_name_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/space_20"
+            android:layout_toRightOf="@+id/addmemb_name_tv"
+            android:background="@null"
+            android:gravity="end"
+            android:hint="请点击输入(最多5个字)"
+            android:padding="@dimen/space_10"
+            android:singleLine="true"
+            android:maxLength="5"
+            android:textColor="@color/color_333333"
+            android:textColorHint="@color/color_aaaaaa"
+            android:textSize="@dimen/space_32" />
+
+        <ImageView
+            style="@style/lay_divide_line_horizontal"
+            android:layout_alignParentBottom="true" />
+
+    </RelativeLayout>
+
+    <!--性别-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_90"
+        android:background="@color/color_ffffff">
+
+        <TextView
+            android:id="@+id/addmemb_sex_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/space_20"
+            android:text="性别"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/space_30" />
+
+
+        <ImageView
+            style="@style/lay_divide_line_horizontal"
+            android:layout_alignParentBottom="true" />
+
+        <RadioGroup
+            android:id="@+id/addmemb_sex_rg"
+            android:layout_width="@dimen/space_320"
+            android:layout_height="@dimen/space_70"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/space_20"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <RadioButton
+                android:id="@+id/addmemb_sex_male"
+                android:layout_width="@dimen/space_0"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/space_40"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableLeft="@drawable/selector_sex_bg"
+                android:drawablePadding="@dimen/space_10"
+                android:checked="true"
+                android:text="男" />
+
+            <RadioButton
+                android:id="@+id/addmemb_sex_female"
+                android:layout_width="@dimen/space_0"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableLeft="@drawable/selector_sex_bg"
+                android:drawablePadding="@dimen/space_10"
+                android:text="女" />
+
+        </RadioGroup>
+
+    </RelativeLayout>
+
+    <!--身份证-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_height="@dimen/space_90"
+        android:background="@color/color_ffffff">
+
+        <TextView
+            android:id="@+id/addmemb_idcard_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/space_20"
+            android:text="身份证"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/space_30" />
+
+
+        <EditText
+            android:id="@+id/addmemb_idcard_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/space_20"
+            android:layout_toRightOf="@+id/addmemb_idcard_tv"
+            android:background="@null"
+            android:gravity="end"
+            android:hint="请点击输入"
+            android:padding="@dimen/space_10"
+            android:singleLine="true"
+            android:maxLength="18"
+            android:digits="0123456789Xx"
+            android:textColor="@color/color_333333"
+            android:textColorHint="@color/color_aaaaaa"
+            android:textSize="@dimen/space_32" />
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_f3f3f3"
+    android:orientation="vertical">
+
+    <com.busilinq.casepocket.widget.HeaderLayoutView
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <RelativeLayout
+        android:id="@+id/gallery_date_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header"
+        android:background="@color/color_ffffff">
+
+
+        <TextView
+            android:id="@+id/gallery_name_tv"
+            android:layout_width="@dimen/space_88"
+            android:layout_height="@dimen/space_88"
+            android:layout_marginBottom="@dimen/space_30"
+            android:layout_marginLeft="@dimen/space_30"
+            android:layout_marginRight="@dimen/space_20"
+            android:layout_marginTop="@dimen/space_30"
+            android:background="@drawable/shape_name_textview_bg"
+            android:gravity="center"
+            android:text="懒猪"
+            android:textColor="@color/color_ffffff"
+            android:textSize="@dimen/space_22" />
+
+        <TextView
+            android:id="@+id/gallery_hospital_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_30"
+            android:layout_toRightOf="@+id/gallery_name_tv"
+            android:text="sdadasd"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/space_32" />
+
+
+        <TextView
+            android:id="@+id/gallery_department_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/space_30"
+            android:layout_marginTop="@dimen/space_30"
+            android:layout_toRightOf="@+id/gallery_hospital_tv"
+            android:text="sdadasd"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/space_32" />
+
+        <TextView
+            android:id="@+id/gallery_date_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/gallery_name_tv"
+            android:layout_toEndOf="@+id/gallery_name_tv"
+            android:layout_toRightOf="@+id/gallery_name_tv"
+            android:text="sdadasd"
+            android:textColor="@color/color_aaaaaa"
+            android:textSize="@dimen/space_26" />
+
+    </RelativeLayout>
+
+
+    <FrameLayout
+        android:id="@+id/gallery_frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/gallery_remark_layout"
+        android:layout_below="@+id/gallery_date_layout" />
+
+
+    <LinearLayout
+        android:id="@+id/gallery_remark_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/gallery_desc_tv"
+        android:layout_marginBottom="@dimen/space_20"
+        android:layout_marginTop="@dimen/space_20"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            style="@style/lay_divide_line_horizontal"
+            android:layout_width="@dimen/space_0"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:contentDescription="@null" />
+
+        <TextView
+            android:id="@+id/gallery_remark_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/space_20"
+            android:layout_marginRight="@dimen/space_20"
+            android:text="备注"
+            android:textColor="@color/color_aaaaaa"
+            android:textSize="@dimen/space_26" />
+
+        <ImageView
+            style="@style/lay_divide_line_horizontal"
+            android:layout_width="@dimen/space_0"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:contentDescription="@null" />
+
+    </LinearLayout>
+
+    <TextView
+        android:background="@color/color_ffffff"
+        android:id="@+id/gallery_desc_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:paddingBottom="@dimen/space_20"
+        android:paddingTop="@dimen/space_42"
+        android:paddingLeft="@dimen/space_20"
+        android:paddingRight="@dimen/space_20"
+        android:gravity="center"
+        android:textColor="@color/color_333333"
+        android:textSize="@dimen/space_30" />
+
+
+</RelativeLayout>

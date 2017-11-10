@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="@dimen/space_214"
+        android:layout_height="@dimen/space_96"
+        android:background="@color/color_ffffff">
+
+
+        <ImageView
+            android:id="@+id/popup_item_iv"
+            android:layout_width="@dimen/space_50"
+            android:layout_height="@dimen/space_50"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/space_44"
+            android:scaleType="centerInside"
+            android:src="@mipmap/icon_pop_edit" />
+
+        <TextView
+            android:id="@+id/popup_item_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/space_30"
+            android:singleLine="true"
+            android:textColor="@color/color_333333" />
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

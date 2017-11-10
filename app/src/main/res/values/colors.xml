@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#539cf2</color>
+    <color name="colorPrimaryDark">#539cf2</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="gallery_blue">#539cf2</color>
+
+    <!--自定义颜色-->
+    <color name="colorTransparent">#00000000</color>
+    <color name="common_bottom_text_selected">#037ac6</color>
+    <color name="color_CCCCCC">#CCCCCC</color>
+    <color name="color_52b048">#52b048</color>
+    <color name="color_ffffff">#ffffff</color>
+    <color name="color_aaaaaa">#aaaaaa</color>
+    <color name="color_60b9f5">#60b9f5</color>
+    <color name="color_333333">#333333</color>
+    <color name="color_53a2f2">#53a2f2</color>
+    <color name="color_59cef2">#59cef2</color>
+    <color name="color_56b0f2">#56b0f2</color>
+    <color name="color_5195f2">#5195f2</color>
+    <color name="color_59c1f2">#59c1f2</color>
+    <color name="color_539cf2">#539cf2</color>
+    <color name="color_999999">#cccccc</color>
+    <color name="color_56b5f2">#56b5f2</color>
+    <color name="color_f3f3f3">#f3f3f3</color>
+    <color name="color_000000">#000000</color>
+    <color name="color_ff000D">#ff000d</color>
+    <color name="color_53a4f3">#53a4f3</color>
+
+</resources>
