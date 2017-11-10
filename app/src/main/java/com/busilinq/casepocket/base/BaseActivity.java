@@ -3,6 +3,7 @@ package com.busilinq.casepocket.base;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +20,7 @@ import com.busilinq.casepocket.ui.WelcomeActivity;
 import com.busilinq.casepocket.utils.ToastUtils;
 import com.busilinq.casepocket.viewinterface.IBaseView;
 import com.busilinq.casepocket.widget.LoadDialogView;
+import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.zhy.autolayout.AutoLayoutActivity;
 
 import butterknife.ButterKnife;
@@ -46,6 +48,18 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseVi
         initData();
         initUi();
         AppManager.getAppManager().addActivity(this);
+        initSystemTinkbar();
+    }
+
+    private void initSystemTinkbar() {
+        // create our manager instance after the content view is set
+        SystemBarTintManager tintManager = new SystemBarTintManager(this);
+        // enable status bar tint
+        tintManager.setStatusBarTintEnabled(true);
+        // enable navigation bar tint
+        tintManager.setNavigationBarTintEnabled(false);
+        // set a custom status bar drawable
+        tintManager.setStatusBarTintDrawable(getResources().getDrawable(R.drawable.shape_gradient_header_bg));
     }
 
     @Override

@@ -7,102 +7,21 @@
     android:layout_height="match_parent"
     tools:context="com.busilinq.casepocket.ui.MainActivity">
 
-    <android.support.design.widget.CoordinatorLayout
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_above="@+id/tab_bottom"/>
 
-        <android.support.design.widget.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:elevation="0dp">
-
-            <include layout="@layout/main_header_layout"/>
-
-        </android.support.design.widget.AppBarLayout>
-
-
-        <!--无数据时候展示页面-->
-        <LinearLayout
-            android:id="@+id/main_no_data_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/main_search_layout"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/space_600"
-                android:scaleType="centerCrop"
-                android:src="@mipmap/icon_case_no_data" />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="还未添加过任何病历"
-                android:textColor="@color/color_aaaaaa"
-                android:textSize="@dimen/space_30" />
-
-
-            <Button
-                android:id="@+id/main_add_btn"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/space_92"
-                android:layout_marginLeft="@dimen/space_210"
-                android:layout_marginRight="@dimen/space_210"
-                android:layout_marginTop="@dimen/space_56"
-                android:background="@drawable/shape_gradient_button_bg"
-                android:text="点击添加"
-                android:textColor="@color/color_ffffff"
-                android:textSize="@dimen/space_28" />
-
-
-        </LinearLayout>
-
-        <RelativeLayout
-            android:id="@+id/main_have_data_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/main_search_layout"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-            <RelativeLayout
-                android:id="@+id/main_rl_layout"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/space_100"
-                android:background="@drawable/shape_gradient_header_bg">
-
-                <android.support.design.widget.TabLayout
-                    android:background="@drawable/shape_gradient_header_bg"
-                    android:id="@+id/main_tab_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/space_80"
-                    app:tabIndicatorHeight="2dp"
-                    app:tabMode="scrollable"
-                    app:tabGravity="center"
-                    app:tabTextColor="@color/color_ffffff"
-                    app:tabTextAppearance="@style/TabLayoutTextStyle"
-                    app:tabIndicatorColor="@color/color_ffffff" />
-
-            </RelativeLayout>
-
-            <android.support.v4.view.ViewPager
-                android:id="@+id/main_viewpager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/main_rl_layout" />
-
-        </RelativeLayout>
-
-
-    </android.support.design.widget.CoordinatorLayout>
-
-
-
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/tab_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/color_ffffff"
+        app:menu="@menu/menu_bottom_navigation"
+        app:layout_behavior="com.lanzhu.wego.behavior.HomeTabBottomBehavior"/>
 
 </RelativeLayout>

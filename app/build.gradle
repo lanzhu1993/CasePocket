@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.1"
+    buildToolsVersion "26.0.1"
 
     //**兼容Android6.0系统所需，如果这句话报错，可在dependencies标签下使用compile 'cn.bmob.android:http-legacy:1.0'**
     useLibrary 'org.apache.http.legacy'
@@ -66,4 +66,8 @@ dependencies {
     compile 'cn.bmob.android:bmob-sdk:3.5.3'
     compile 'cn.bmob.android:http-legacy:1.0'
     compile 'cn.bmob.android:bmob-sms:1.0.1'
+    //底部导航栏
+    compile 'com.ashokvarma.android:bottom-navigation-bar:2.0.3'
+    //沉浸式
+    compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
 }

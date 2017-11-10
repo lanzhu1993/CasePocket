@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.busilinq.casepocket.utils.ToastUtils;
+import com.busilinq.casepocket.widget.LoadDialogView;
 
 import butterknife.ButterKnife;
 
@@ -23,6 +24,7 @@ import butterknife.ButterKnife;
 public abstract class BaseFragment extends Fragment {
 
     public Activity mActivity;
+    private View mContainerView;
 
 
     @Override
@@ -34,15 +36,17 @@ public abstract class BaseFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(initView(),container,false);
-        ButterKnife.bind(this,view);
-        return view;
+        if(null == mContainerView){
+            mContainerView = inflater.inflate(initView(),container,false);
+            ButterKnife.bind(this,mContainerView);
+            initData();
+        }
+        return mContainerView;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initData();
         initListener();
 
     }
@@ -57,5 +61,15 @@ public abstract class BaseFragment extends Fragment {
     protected void toast(String msg){
         ToastUtils.showToast(msg);
     }
+
+
+    protected void showProgressDialog(String msg){
+        LoadDialogView.showDialog(mActivity,msg);
+    }
+
+    protected void closeProgressDialog(){
+        LoadDialogView.dismssDialog();
+    }
+
 
 }

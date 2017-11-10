@@ -1,7 +1,5 @@
 package com.busilinq.casepocket.viewinterface;
 
-import com.busilinq.casepocket.bean.Relation;
-
 /**
  * 描述：
  * <p>
@@ -10,7 +8,12 @@ import com.busilinq.casepocket.bean.Relation;
  * author: shiquan.lu
  */
 
-public interface IMainView extends IBaseView{
+public interface IFragmentPacketView extends IBaseFragmentView{
 
+    void intoAddCaseActivity();
+
+    void findMember();
+
+    void setupViewPager();
 
 }

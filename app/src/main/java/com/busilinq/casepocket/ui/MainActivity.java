@@ -2,9 +2,14 @@ package com.busilinq.casepocket.ui;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -13,9 +18,15 @@ import android.widget.RelativeLayout;
 import com.busilinq.casepocket.R;
 import com.busilinq.casepocket.adapter.ViewPagerAdapter;
 import com.busilinq.casepocket.base.BaseActivity;
+import com.busilinq.casepocket.base.BaseFragment;
 import com.busilinq.casepocket.bean.Relation;
 import com.busilinq.casepocket.bean.UpdateInfo;
+import com.busilinq.casepocket.factory.FragmentFactory;
+import com.busilinq.casepocket.presenter.FragmentPacketPresenter;
 import com.busilinq.casepocket.presenter.MainPresenter;
+import com.busilinq.casepocket.ui.fragment.ActiveFragment;
+import com.busilinq.casepocket.ui.fragment.MineFragment;
+import com.busilinq.casepocket.ui.fragment.PacketFragment;
 import com.busilinq.casepocket.update.UpdateManager;
 import com.busilinq.casepocket.utils.AppInfoUtils;
 import com.busilinq.casepocket.utils.Constants;
@@ -33,33 +44,23 @@ import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SQLQueryListener;
 import cn.bmob.v3.listener.SaveListener;
 
-public class MainActivity extends BaseActivity implements IMainView{
+public class MainActivity extends BaseActivity{
 
-    @Bind(R.id.header)
-    HeaderLayoutView header;
-
-    @Bind(R.id.main_add_btn)
-    Button mMainAddBtn;
-
-    @Bind(R.id.main_no_data_layout)
-    LinearLayout mMainNoDataLayout;
-
-    @Bind(R.id.main_have_data_layout)
-    RelativeLayout mMainHaveDataLayout;
-
-    @Bind(R.id.main_viewpager)
-    ViewPager mMainViewPager;
-
-    @Bind(R.id.main_tab_layout)
-    TabLayout mMainTabLayout;
+    @Bind(R.id.tab_bottom)
+    BottomNavigationView mBottomNavigationView;
 
     MainPresenter presenter;
 
     ViewPagerAdapter adapter;
 
 
-    private List<Relation> relationList = new ArrayList<>();
-
+    private Fragment[] fragments;
+    private int index;
+    //当前fragment的index
+    private int currentTabIndex;
+    private PacketFragment packetFragment;
+    private ActiveFragment activeFragment;
+    private MineFragment mineFragment;
 
     @Override
     public int initContentView() {
@@ -69,10 +70,20 @@ public class MainActivity extends BaseActivity implements IMainView{
     @Override
     public void initData() {
         presenter = new MainPresenter();
-        presenter.attachView(this);
-        findMember();
+        initFragmentData();
+        mBottomNavigationView.setOnNavigationItemSelectedListener(mTabItemListener);
+    }
 
-        update();
+    private void initFragmentData() {
+        packetFragment = (PacketFragment) FragmentFactory.createFragment(PacketFragment.class);
+        activeFragment = (ActiveFragment) FragmentFactory.createFragment(ActiveFragment.class);
+        mineFragment = (MineFragment) FragmentFactory.createFragment(MineFragment.class);
+        fragments = new Fragment[]{packetFragment,activeFragment,mineFragment};
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.add(R.id.fragment_container,packetFragment)
+                .add(R.id.fragment_container,activeFragment)
+                .hide(activeFragment).show(packetFragment)
+                .commit();
     }
 
     /**
@@ -96,16 +107,6 @@ public class MainActivity extends BaseActivity implements IMainView{
 
     @Override
     public void initUi() {
-        header.setLeftVisible(View.INVISIBLE);
-        header.setTitle("我的病历");
-        header.setRightImage(R.mipmap.icon_add_case);
-        header.setRightBtnOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                intoAddCaseActivity();
-            }
-        });
-        setupViewPager();
       /*  header.setSearchLayoutOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -115,70 +116,8 @@ public class MainActivity extends BaseActivity implements IMainView{
     }
 
 
-    @OnClick(R.id.main_add_btn)
-    public void OnClick(View view){
-        switch (view.getId()){
-            case R.id.main_add_btn:
-                intoAddCaseActivity();
-                break;
-        }
-    }
-
-    @Override
-    public void intoAddCaseActivity() {
-        Bundle bundle = new Bundle();
-        bundle.putSerializable(Constants.RELATION,new Relation());
-        showActivity(MainActivity.this,AddCaseActivity.class,bundle);
-    }
-
-    @Override
-    public void findMember() {
-        showProgressDialog("加载中...");
-        presenter.findOwnerInfo(new FindListener<Relation>() {
-            @Override
-            public void done(List<Relation> list, BmobException e) {
-                if(e == null){
-                    relationList = list;
-                }
-                if(relationList.size() > 0){
-                    mMainHaveDataLayout.setVisibility(View.VISIBLE);
-                    mMainNoDataLayout.setVisibility(View.INVISIBLE);
-                    for (int i = 0; i <relationList.size() ; i++) {
-                        mMainTabLayout.addTab(mMainTabLayout.newTab().setText(relationList.get(i).getRelationName()));
-                    }
-                    adapter.refresh(relationList);
-                }else{
-                    header.setSearchLayoutInVisible();
-                    mMainHaveDataLayout.setVisibility(View.INVISIBLE);
-                    mMainNoDataLayout.setVisibility(View.VISIBLE);
-                }
-                closeProgressDialog();
-            }
-        });
-    }
 
 
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        findMember();
-        mMainViewPager.removeAllViews();
-        mMainViewPager.setAdapter(adapter);
-        mMainTabLayout.setupWithViewPager(mMainViewPager);
-    }
-
-    @Override
-    public void setupViewPager() {
-        mMainTabLayout.setTabTextColors(getResources().getColor(R.color.color_ffffff),getResources().getColor(R.color.color_ffffff));
-        if(adapter == null){
-            adapter = new ViewPagerAdapter(getSupportFragmentManager(),relationList);
-        }else{
-            adapter.refresh(relationList);
-        }
-        mMainViewPager.setAdapter(adapter);
-        mMainViewPager.setOffscreenPageLimit(0);
-        mMainTabLayout.setupWithViewPager(mMainViewPager);
-    }
 
     @Override
     protected void onDestroy() {
@@ -186,5 +125,33 @@ public class MainActivity extends BaseActivity implements IMainView{
         presenter.cancel();
         super.onDestroy();
     }
+
+
+    BottomNavigationView.OnNavigationItemSelectedListener  mTabItemListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()){
+                case R.id.item_msg:
+                    index = 0;
+                    break;
+                case R.id.item_find:
+                    index = 1;
+                    break;
+                case R.id.item_mine:
+                    index = 2;
+                    break;
+            }
+            if (currentTabIndex != index) {
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.hide(fragments[currentTabIndex]);
+                if (!fragments[index].isAdded()) {
+                    transaction.add(R.id.fragment_container, fragments[index]);
+                }
+                transaction.show(fragments[index]).commit();
+            }
+            currentTabIndex = index;
+            return true;
+        }
+    };
 
 }

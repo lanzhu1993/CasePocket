@@ -5,7 +5,7 @@ group='com.github.Yancy'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion '25.0.1'
+    buildToolsVersion '26.0.1'
     resourcePrefix "GalleryPick"	//这个随便填
 
     defaultConfig {

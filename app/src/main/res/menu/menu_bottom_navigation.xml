@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/item_msg"
+        android:checked="true"
+        android:icon="@mipmap/icon_tab_packet"
+        android:title="口袋" />
+
+    <item
+        android:id="@+id/item_find"
+        android:icon="@mipmap/icon_tab_active"
+        android:title="动态" />
+
+    <item
+        android:id="@+id/item_mine"
+        android:icon="@mipmap/icon_tab_mine"
+        android:title="我的" />
+
+</menu>
