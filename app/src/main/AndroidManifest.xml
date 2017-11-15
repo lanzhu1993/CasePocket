@@ -63,6 +63,9 @@
         <activity android:name=".ui.PictureActivity"
             android:screenOrientation="portrait"/>
 
+        <activity android:name=".ui.SendActiveActivity"
+            android:screenOrientation="portrait"/>
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.yancy.gallerypickdemo.fileprovider"
