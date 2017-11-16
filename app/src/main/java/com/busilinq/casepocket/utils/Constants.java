@@ -15,6 +15,9 @@ public class Constants {
     public static final String RELATION = "RELATION";
     public static final String CASE_DETAIL = "CASE_DETAIL";
     public static final String IMG_URL = "IMG_URL";
+    public static final int PHOTO_MAX = 9;
+    public static final int TYPE_ADD = 0;
+    public static final int TYPE_PHOTO = 1;
 
     public static boolean IS_FIRST = false;
 }

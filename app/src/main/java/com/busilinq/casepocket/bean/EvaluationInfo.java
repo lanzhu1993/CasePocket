@@ -14,21 +14,19 @@ import cn.bmob.v3.BmobObject;
 
 public class EvaluationInfo extends BmobObject {
 
-    private List<String> attachments; // 评论图片列表
+    private String attachments; // 评论图片列表
     private String content;                  // 内容信息
-    private String creatTime;                // 评论时间
-    private String evaluationId;                // 评论id
     private String userName;
-    private List<EvaluationReply> evaluatereplys;//回复列表内容
+    private String userId;
 
-    public List<String> getAttachments() {
+
+    public String getAttachments() {
         return attachments;
     }
 
-    public void setAttachments(List<String> attachments) {
+    public void setAttachments(String attachments) {
         this.attachments = attachments;
     }
-
 
     public String getContent() {
         return content;
@@ -36,22 +34,6 @@ public class EvaluationInfo extends BmobObject {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public String getCreatTime() {
-        return creatTime;
-    }
-
-    public void setCreatTime(String creatTime) {
-        this.creatTime = creatTime;
-    }
-
-    public String getEvaluationId() {
-        return evaluationId;
-    }
-
-    public void setEvaluationId(String evaluationId) {
-        this.evaluationId = evaluationId;
     }
 
     public String getUserName() {
@@ -62,12 +44,14 @@ public class EvaluationInfo extends BmobObject {
         this.userName = userName;
     }
 
-    public List<EvaluationReply> getEvaluatereplys() {
-        return evaluatereplys;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setEvaluatereplys(List<EvaluationReply> evaluatereplys) {
-        this.evaluatereplys = evaluatereplys;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
+
+
 
 }

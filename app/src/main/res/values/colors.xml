@@ -27,5 +27,7 @@
     <color name="color_000000">#000000</color>
     <color name="color_ff000D">#ff000d</color>
     <color name="color_53a4f3">#53a4f3</color>
+    <color name="color_f2f2f2">#f2f2f2</color>
+    <color name="color_808080">#808080</color>
 
 </resources>

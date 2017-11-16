@@ -63,10 +63,10 @@
         <activity android:name=".ui.PictureActivity"
             android:screenOrientation="portrait"/>
 
-        <activity android:name=".ui.SendActiveActivity"
+        <activity android:name=".ui.PostActiveActivity"
             android:screenOrientation="portrait"/>
 
-        <activity android:name=".ui.PostActiveActivity"
+        <activity android:name=".ui.PersonalActivity"
             android:screenOrientation="portrait"/>
 
         <provider

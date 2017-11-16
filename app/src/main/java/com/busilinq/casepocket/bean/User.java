@@ -15,15 +15,15 @@ public class User extends BmobUser {
 
 
     private String phone;
-    private BmobFile avater;
+    private String avater;
+    private String nickName;
 
 
-
-    public BmobFile getAvater() {
+    public String getAvater() {
         return avater;
     }
 
-    public void setAvater(BmobFile avater) {
+    public void setAvater(String avater) {
         this.avater = avater;
     }
 
@@ -36,5 +36,11 @@ public class User extends BmobUser {
         this.phone = phone;
     }
 
+    public String getNickName() {
+        return nickName;
+    }
 
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
 }

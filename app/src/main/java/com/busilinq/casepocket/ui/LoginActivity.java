@@ -11,6 +11,7 @@ import com.busilinq.casepocket.R;
 import com.busilinq.casepocket.base.AppManager;
 import com.busilinq.casepocket.base.BaseActivity;
 import com.busilinq.casepocket.bean.User;
+import com.busilinq.casepocket.db.CPDbApi;
 import com.busilinq.casepocket.presenter.LoginPresenter;
 import com.busilinq.casepocket.utils.PhoneFormatCheckUtils;
 import com.busilinq.casepocket.viewinterface.ILoginView;
@@ -125,6 +126,7 @@ public class LoginActivity extends BaseActivity  implements ILoginView{
                 if(e == null){
                     toast("登录成功"+user.getUsername());
                     presenter.saveAccount(username,password);
+                    CPDbApi.getInstance().saveUser(user);
                     intoMainActivity();
                 }else{
                     toast("登录失败"+e.getMessage());

@@ -8,7 +8,7 @@ import android.view.View;
 import com.busilinq.casepocket.R;
 import com.busilinq.casepocket.base.BaseActivity;
 import com.busilinq.casepocket.base.BaseFragment;
-import com.busilinq.casepocket.ui.SendActiveActivity;
+import com.busilinq.casepocket.ui.PostActiveActivity;
 import com.busilinq.casepocket.widget.HeaderLayoutView;
 
 import butterknife.Bind;
@@ -52,7 +52,7 @@ public class ActiveFragment extends BaseFragment {
     protected void initListener() {
         header.setTitle("动态");
         header.setLeftVisible(View.INVISIBLE);
-        header.setRightImage(R.mipmap.icon_add_active);
+        header.setRightImage(R.mipmap.icon_right_add);
         header.setRightBtnOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,6 +63,6 @@ public class ActiveFragment extends BaseFragment {
     }
 
     private void intoSendActiveActivity() {
-        ((BaseActivity)mActivity).showActivity(mActivity, SendActiveActivity.class);
+        ((BaseActivity)mActivity).showActivity(mActivity, PostActiveActivity.class);
     }
 }
