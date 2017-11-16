@@ -218,11 +218,7 @@ public class PersonalActivity extends BaseActivity implements IPersonalView {
 
     @Override
     public void saveAvater(String avater) {
-        try{
-            presenter.saveAvater(avater);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+        presenter.saveAvater(avater);
     }
 
     @Override
