@@ -13,4 +13,17 @@ public interface IPersonalView extends IBaseView {
     void saveAvater(String avater);
 
     void upLoadAvater();
+
+    void updateSex(String sex);
+
+    void updateNickName(String nickName);
+
+    void updateBirth(String birth);
+
+    void showUserInfo();
+
+    void showInputDialog();
+
+    void showBirthDialog();
+
 }

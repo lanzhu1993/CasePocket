@@ -10,18 +10,27 @@ import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.text.InputType;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.busilinq.casepocket.R;
 import com.busilinq.casepocket.adapter.GlideImageLoader;
 import com.busilinq.casepocket.base.BaseActivity;
+import com.busilinq.casepocket.bean.User;
+import com.busilinq.casepocket.db.CPDbApi;
 import com.busilinq.casepocket.presenter.PersonalPresenter;
 import com.busilinq.casepocket.utils.ImageUtils;
 import com.busilinq.casepocket.utils.ThreadManager;
+import com.busilinq.casepocket.utils.ToastUtils;
 import com.busilinq.casepocket.viewinterface.IPersonalView;
 import com.busilinq.casepocket.widget.HeaderLayoutView;
+import com.busilinq.casepocket.widget.LoadDialogView;
 import com.yancy.gallerypick.config.GalleryConfig;
 import com.yancy.gallerypick.config.GalleryPick;
 import com.yancy.gallerypick.inter.IHandlerCallBack;
@@ -104,6 +113,7 @@ public class PersonalActivity extends BaseActivity implements IPersonalView {
     @Override
     public void initUi() {
         header.setTitle("我的信息");
+        showUserInfo();
     }
 
 
@@ -120,16 +130,37 @@ public class PersonalActivity extends BaseActivity implements IPersonalView {
                 initPermissions();
                 break;
             case R.id.personal_nickname_layout:
+                showInputDialog();
                 break;
             case R.id.personal_phone_layout:
                 break;
             case R.id.personal_qrcode_layout:
                 break;
             case R.id.personal_sex_layout:
+                showSexDialog();
                 break;
             case R.id.personal_birth_layout:
+                showBirthDialog();
                 break;
         }
+    }
+
+    private void showSexDialog() {
+        new MaterialDialog.Builder(this)
+                .title("性別")
+                .itemsColor(getResources().getColor(R.color.colorPrimaryDark))
+                .positiveColor(getResources().getColor(R.color.colorPrimaryDark))
+                .contentColor(getResources().getColor(R.color.colorPrimaryDark))
+                .items(R.array.sex_values)
+                .positiveText("确定")
+                .itemsCallbackSingleChoice(0, new MaterialDialog.ListCallbackSingleChoice() {
+                    @Override
+                    public boolean onSelection(MaterialDialog dialog, View itemView, int which, CharSequence text) {
+                        updateSex(text.toString());
+                        return true;
+                    }
+                })
+                .show();
     }
 
 
@@ -223,6 +254,7 @@ public class PersonalActivity extends BaseActivity implements IPersonalView {
 
     @Override
     public void upLoadAvater() {
+        LoadDialogView.showDialog(this,"请稍等...");
         ThreadManager.getInstance().submit(new Runnable() {
             @Override
             public void run() {
@@ -241,7 +273,6 @@ public class PersonalActivity extends BaseActivity implements IPersonalView {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        showProgressDialog("正在上传中...");
                         final StringBuilder builder = new StringBuilder();
                         for (int i = 0; i < compress_path.size(); i++) {
                             final BmobFile bmobFile = new BmobFile(new File(compress_path.get(i)));
@@ -268,5 +299,71 @@ public class PersonalActivity extends BaseActivity implements IPersonalView {
             }
 
         });
+    }
+
+    @Override
+    public void updateSex(String sex) {
+        presenter.updateSex(sex);
+    }
+
+    @Override
+    public void updateNickName(String nickName) {
+        presenter.updateNickName(nickName);
+    }
+
+    @Override
+    public void updateBirth(String birth) {
+        presenter.updateBirth(birth);
+    }
+
+    @Override
+    public void showUserInfo() {
+        User user = CPDbApi.getInstance().getUser();
+        if(null !=user.getBirth() && !TextUtils.isEmpty(user.getBirth())){
+            mPersonalBirthTv.setText(user.getBirth());
+        }
+        if(null !=user.getNickName() && !TextUtils.isEmpty(user.getNickName())){
+            mPersonalNameTv.setText(user.getNickName());
+        }
+        if(null !=user.getSex() && !TextUtils.isEmpty(user.getSex())){
+            mPersonalSexTv.setText(user.getSex());
+        }
+        mPersonalPhoneTv.setText(user.getUsername());
+        Glide.with(this)
+                .load(user.getAvater())
+                .placeholder(R.mipmap.icon_add_avater)
+                .error(R.mipmap.icon_add_avater)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .centerCrop()
+                .into(mPersonalAvaterIv);
+    }
+
+    @Override
+    public void showInputDialog() {
+        new MaterialDialog.Builder(this)
+                .title("修改昵称")
+                .itemsColor(getResources().getColor(R.color.colorPrimaryDark))
+                .positiveColor(getResources().getColor(R.color.colorPrimaryDark))
+                .contentColor(getResources().getColor(R.color.colorPrimaryDark))
+                .itemsColorRes(R.color.colorPrimaryDark)
+                .inputType(
+                        InputType.TYPE_CLASS_TEXT
+                                | InputType.TYPE_TEXT_VARIATION_PERSON_NAME
+                                | InputType.TYPE_TEXT_FLAG_CAP_WORDS)
+                .inputRange(2, 16)
+                .positiveText("确定")
+                .negativeText("取消")
+                .input("请填写昵称", "", false, new MaterialDialog.InputCallback() {
+                    @Override
+                    public void onInput(@NonNull MaterialDialog dialog, CharSequence input) {
+                        updateNickName(input.toString());
+                    }
+                })
+                .show();
+    }
+
+    @Override
+    public void showBirthDialog() {
+
     }
 }

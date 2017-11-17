@@ -1,23 +1,17 @@
 package com.busilinq.casepocket.modle;
 
-import android.content.Context;
-
 import com.busilinq.casepocket.bean.UpdateInfo;
 import com.busilinq.casepocket.bean.User;
-
-import java.io.File;
+import com.busilinq.casepocket.db.CPDbApi;
 
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobSMS;
 import cn.bmob.v3.BmobUser;
-import cn.bmob.v3.datatype.BmobFile;
-import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.QueryListener;
 import cn.bmob.v3.listener.SQLQueryListener;
 import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
-import cn.bmob.v3.listener.UploadFileListener;
 import rx.Subscription;
 
 /**
@@ -174,4 +168,57 @@ public class UserApi {
         return query.doSQLQuery("select * from UpdateInfo",listener);
     }
 
+
+    /**
+     * 更新用户头像
+     * @param avater
+     * @param listener
+     */
+    public void saveAvater(String avater,final UpdateListener listener){
+        User user = CPDbApi.getInstance().getUser();
+        user.setAvater(avater);
+        saveUser(user);
+        user.update(listener);
+    }
+
+    /**
+     * 更新性别
+     * @param sex
+     * @param listener
+     */
+    public void updateSex(String sex,final UpdateListener listener){
+        User user = CPDbApi.getInstance().getUser();
+        user.setSex(sex);
+        saveUser(user);
+        user.update(listener);
+    }
+
+
+    /**
+     * 更新生日
+     * @param birth
+     * @param listener
+     */
+    public void updateBirth(String birth,final UpdateListener listener){
+        User user = CPDbApi.getInstance().getUser();
+        user.setBirth(birth);
+        saveUser(user);
+        user.update(listener);
+    }
+
+    /**
+     * 更新昵称
+     * @param name
+     * @param listener
+     */
+    public void updateNickNmae(String name,final UpdateListener listener){
+        User user = CPDbApi.getInstance().getUser();
+        user.setNickName(name);
+        saveUser(user);
+        user.update(listener);
+    }
+
+    public void saveUser(User user){
+        CPDbApi.getInstance().saveUser(user);
+    }
 }

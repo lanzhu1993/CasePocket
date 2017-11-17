@@ -9,7 +9,9 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.busilinq.casepocket.R;
+import com.busilinq.casepocket.base.BaseApplication;
 import com.busilinq.casepocket.utils.ResourcesUtils;
 
 
@@ -26,7 +28,7 @@ public class LoadDialogView {
                 dismssDialog();
             }
         }
-        dialogView = ResourcesUtils.findViewById(context, R.layout.load_dialog);
+        /*dialogView = ResourcesUtils.findViewById(context, R.layout.load_dialog);
         TextView tvMessage = (TextView) dialogView.findViewById(R.id.tv_dialog_msg);
         if (!TextUtils.isEmpty(message)) {
             tvMessage.setText(message);
@@ -34,7 +36,13 @@ public class LoadDialogView {
         dialog = new AlertDialog.Builder(context, R.style.Dialog).create();
         dialog.setCanceledOnTouchOutside(false);
         dialog.show();
-        dialog.setContentView(dialogView);
+        dialog.setContentView(dialogView);*/
+        dialog = new MaterialDialog.Builder(context)
+                .content(message)
+                .progress(true, 0)
+                .progressIndeterminateStyle(false)
+                .canceledOnTouchOutside(false)
+                .show();
     }
 
     public static void dismssDialog() {

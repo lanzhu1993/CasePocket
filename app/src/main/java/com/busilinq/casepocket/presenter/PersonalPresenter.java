@@ -1,9 +1,15 @@
 package com.busilinq.casepocket.presenter;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.busilinq.casepocket.R;
 import com.busilinq.casepocket.bean.User;
 import com.busilinq.casepocket.db.CPDbApi;
+import com.busilinq.casepocket.modle.UserApi;
+import com.busilinq.casepocket.utils.ToastUtils;
 import com.busilinq.casepocket.viewinterface.IPersonalView;
+import com.busilinq.casepocket.widget.LoadDialogView;
 
+import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
@@ -18,27 +24,78 @@ import cn.bmob.v3.listener.UpdateListener;
 
 public class PersonalPresenter extends BasePresenter<IPersonalView> {
 
-    User user;
+
+    UserApi userApi;
     @Override
     public void attachView(IPersonalView view) {
         super.attachView(view);
-        user =  CPDbApi.getInstance().getUser();
+        userApi = UserApi.getUserApi();
     }
 
     public void saveAvater(String avater){
-        user.setAvater(avater);
-        user.update(new UpdateListener() {
+        LoadDialogView.showDialog(mBaseView.getContext(),"请稍等...");
+        userApi.saveAvater(avater, new UpdateListener() {
             @Override
             public void done(BmobException e) {
                 if(null == e){
-                    System.out.println("====上传成功了===");
+                    //更新UI
+                    mBaseView.showUserInfo();
+                    ToastUtils.showToast("修改成功");
                 }else{
-                    System.out.println("======="+e.getMessage());
+                    ToastUtils.showToast("修改失败");
                 }
-
+                LoadDialogView.dismssDialog();
             }
         });
     }
 
+
+    public void updateSex(String sex) {
+        LoadDialogView.showDialog(mBaseView.getContext(),"请稍等...");
+        userApi.updateSex(sex, new UpdateListener() {
+            @Override
+            public void done(BmobException e) {
+                if(null == e){
+                    mBaseView.showUserInfo();
+                    ToastUtils.showToast("修改成功");
+                }else{
+                    ToastUtils.showToast("修改失败");
+                }
+                LoadDialogView.dismssDialog();
+            }
+        });
+    }
+
+    public void updateNickName(String nickname){
+        LoadDialogView.showDialog(mBaseView.getContext(),"请稍等...");
+        userApi.updateNickNmae(nickname, new UpdateListener() {
+            @Override
+            public void done(BmobException e) {
+                if(null == e){
+                    mBaseView.showUserInfo();
+                    ToastUtils.showToast("修改成功");
+                }else{
+                    ToastUtils.showToast("修改失败");
+                }
+                LoadDialogView.dismssDialog();
+            }
+        });
+    }
+
+    public void updateBirth(String birth){
+        LoadDialogView.showDialog(mBaseView.getContext(),"请稍等...");
+        userApi.updateBirth(birth, new UpdateListener() {
+            @Override
+            public void done(BmobException e) {
+                if(null == e){
+                    mBaseView.showUserInfo();
+                    ToastUtils.showToast("修改成功");
+                }else{
+                    ToastUtils.showToast("修改失败");
+                }
+                LoadDialogView.dismssDialog();
+            }
+        });
+    }
 
 }

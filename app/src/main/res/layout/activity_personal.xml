@@ -74,10 +74,8 @@
 
         <TextView
             android:id="@+id/personal_name_tv"
-            android:layout_width="@dimen/space_100"
-            android:layout_height="@dimen/space_100"
-            android:src="@mipmap/icon_add_avater"
-            android:scaleType="centerCrop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:textColor="@color/color_808080"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
@@ -121,10 +119,9 @@
 
         <TextView
             android:id="@+id/personal_phone_tv"
-            android:layout_width="@dimen/space_100"
-            android:layout_height="@dimen/space_100"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:src="@mipmap/icon_add_avater"
-            android:scaleType="centerCrop"
             android:textColor="@color/color_808080"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
@@ -213,10 +210,8 @@
 
         <TextView
             android:id="@+id/personal_sex_tv"
-            android:layout_width="@dimen/space_100"
-            android:layout_height="@dimen/space_100"
-            android:src="@mipmap/icon_add_avater"
-            android:scaleType="centerCrop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:textColor="@color/color_808080"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
@@ -259,10 +254,8 @@
 
         <TextView
             android:id="@+id/personal_birth_tv"
-            android:layout_width="@dimen/space_100"
-            android:layout_height="@dimen/space_100"
-            android:src="@mipmap/icon_add_avater"
-            android:scaleType="centerCrop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:textColor="@color/color_808080"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"

@@ -17,7 +17,26 @@ public class User extends BmobUser {
     private String phone;
     private String avater;
     private String nickName;
+    private String sex;
+    private String birth;
 
+
+
+    public String getBirth() {
+        return birth;
+    }
+
+    public void setBirth(String birth) {
+        this.birth = birth;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
 
     public String getAvater() {
         return avater;
