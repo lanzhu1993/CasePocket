@@ -177,7 +177,7 @@ public class UserApi {
     public void saveAvater(String avater,final UpdateListener listener){
         User user = CPDbApi.getInstance().getUser();
         user.setAvater(avater);
-        saveUser(user);
+        //saveUser(user);
         user.update(listener);
     }
 
@@ -189,7 +189,7 @@ public class UserApi {
     public void updateSex(String sex,final UpdateListener listener){
         User user = CPDbApi.getInstance().getUser();
         user.setSex(sex);
-        saveUser(user);
+        //saveUser(user);
         user.update(listener);
     }
 
@@ -202,7 +202,7 @@ public class UserApi {
     public void updateBirth(String birth,final UpdateListener listener){
         User user = CPDbApi.getInstance().getUser();
         user.setBirth(birth);
-        saveUser(user);
+        //saveUser(user);
         user.update(listener);
     }
 
@@ -214,7 +214,7 @@ public class UserApi {
     public void updateNickNmae(String name,final UpdateListener listener){
         User user = CPDbApi.getInstance().getUser();
         user.setNickName(name);
-        saveUser(user);
+        //saveUser(user);
         user.update(listener);
     }
 

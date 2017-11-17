@@ -39,6 +39,7 @@ public class PersonalPresenter extends BasePresenter<IPersonalView> {
             public void done(BmobException e) {
                 if(null == e){
                     //更新UI
+                    saveUser(BmobUser.getCurrentUser(User.class));
                     mBaseView.showUserInfo();
                     ToastUtils.showToast("修改成功");
                 }else{
@@ -56,6 +57,7 @@ public class PersonalPresenter extends BasePresenter<IPersonalView> {
             @Override
             public void done(BmobException e) {
                 if(null == e){
+                    saveUser(BmobUser.getCurrentUser(User.class));
                     mBaseView.showUserInfo();
                     ToastUtils.showToast("修改成功");
                 }else{
@@ -72,6 +74,7 @@ public class PersonalPresenter extends BasePresenter<IPersonalView> {
             @Override
             public void done(BmobException e) {
                 if(null == e){
+                    saveUser(BmobUser.getCurrentUser(User.class));
                     mBaseView.showUserInfo();
                     ToastUtils.showToast("修改成功");
                 }else{
@@ -88,6 +91,7 @@ public class PersonalPresenter extends BasePresenter<IPersonalView> {
             @Override
             public void done(BmobException e) {
                 if(null == e){
+                    saveUser(BmobUser.getCurrentUser(User.class));
                     mBaseView.showUserInfo();
                     ToastUtils.showToast("修改成功");
                 }else{
@@ -98,4 +102,7 @@ public class PersonalPresenter extends BasePresenter<IPersonalView> {
         });
     }
 
+    public void saveUser(User user){
+        CPDbApi.getInstance().saveUser(user);
+    }
 }
