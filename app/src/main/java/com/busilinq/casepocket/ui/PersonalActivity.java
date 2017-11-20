@@ -13,9 +13,11 @@ import android.support.v4.content.ContextCompat;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -95,6 +97,8 @@ public class PersonalActivity extends BaseActivity implements IPersonalView {
             }
         }
     };
+    private View datePickerView;
+    private DatePicker datePicker;
 
 
     @Override
@@ -364,6 +368,25 @@ public class PersonalActivity extends BaseActivity implements IPersonalView {
 
     @Override
     public void showBirthDialog() {
-
+        if(null == datePickerView){
+            datePickerView = View.inflate(this, R.layout.dialog_datepicker,null);
+            datePicker = (DatePicker) datePickerView.findViewById(R.id.datePicker);
+        }
+        new MaterialDialog.Builder(this)
+                .title("请选择生日")
+                .itemsColor(getResources().getColor(R.color.colorPrimaryDark))
+                .positiveColor(getResources().getColor(R.color.colorPrimaryDark))
+                .contentColor(getResources().getColor(R.color.colorPrimaryDark))
+                .customView(datePickerView, false)
+                .positiveText("确定")
+                .negativeText("取消")
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        String birthday = datePicker.getYear()+"/"+(datePicker.getMonth()+1)+"/"+datePicker.getDayOfMonth();
+                        updateBirth(birthday);
+                    }
+                })
+                .show();
     }
 }
