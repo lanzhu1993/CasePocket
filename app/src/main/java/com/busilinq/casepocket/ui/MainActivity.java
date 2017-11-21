@@ -1,48 +1,39 @@
 package com.busilinq.casepocket.ui;
 
 
-import android.os.Bundle;
+import android.Manifest;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.TabLayout;
+
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.ViewPager;
-import android.support.v4.widget.SwipeRefreshLayout;
+
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
+
 
 import com.busilinq.casepocket.R;
 import com.busilinq.casepocket.adapter.ViewPagerAdapter;
 import com.busilinq.casepocket.base.BaseActivity;
-import com.busilinq.casepocket.base.BaseFragment;
-import com.busilinq.casepocket.bean.Relation;
+
 import com.busilinq.casepocket.bean.UpdateInfo;
 import com.busilinq.casepocket.factory.FragmentFactory;
-import com.busilinq.casepocket.presenter.FragmentPacketPresenter;
+
 import com.busilinq.casepocket.presenter.MainPresenter;
 import com.busilinq.casepocket.ui.fragment.ActiveFragment;
 import com.busilinq.casepocket.ui.fragment.MineFragment;
 import com.busilinq.casepocket.ui.fragment.PacketFragment;
 import com.busilinq.casepocket.update.UpdateManager;
 import com.busilinq.casepocket.utils.AppInfoUtils;
-import com.busilinq.casepocket.utils.Constants;
-import com.busilinq.casepocket.viewinterface.IMainView;
-import com.busilinq.casepocket.widget.HeaderLayoutView;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.busilinq.casepocket.utils.ToastUtils;
+import com.tbruyelle.rxpermissions.RxPermissions;
 
 import butterknife.Bind;
-import butterknife.OnClick;
 import cn.bmob.v3.datatype.BmobQueryResult;
 import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SQLQueryListener;
-import cn.bmob.v3.listener.SaveListener;
+import rx.functions.Action1;
+
 
 public class MainActivity extends BaseActivity{
 
@@ -72,6 +63,7 @@ public class MainActivity extends BaseActivity{
         presenter = new MainPresenter();
         initFragmentData();
         mBottomNavigationView.setOnNavigationItemSelectedListener(mTabItemListener);
+        initPerMission();
     }
 
     private void initFragmentData() {
@@ -113,6 +105,21 @@ public class MainActivity extends BaseActivity{
                 //TODO
             }
         });*/
+    }
+
+    private void initPerMission(){
+        RxPermissions rxPermissions = new RxPermissions(this);
+        rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE
+        ,Manifest.permission.CALL_PHONE,Manifest.permission.READ_PHONE_STATE,Manifest.permission.CAMERA,Manifest.permission.READ_PHONE_STATE
+        ,Manifest.permission.CALL_PHONE)
+                .subscribe(new Action1<Boolean>() {
+                    @Override
+                    public void call(Boolean aBoolean) {
+                        if(!aBoolean){
+                            ToastUtils.showToast("请打开相应权限");
+                        }
+                    }
+                });
     }
 
 

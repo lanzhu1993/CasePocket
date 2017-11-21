@@ -26,4 +26,6 @@ public interface IPersonalView extends IBaseView {
 
     void showBirthDialog();
 
+    void intoQRCodeActivity();
+
 }

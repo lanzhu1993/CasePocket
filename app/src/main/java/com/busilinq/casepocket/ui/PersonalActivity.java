@@ -139,6 +139,7 @@ public class PersonalActivity extends BaseActivity implements IPersonalView {
             case R.id.personal_phone_layout:
                 break;
             case R.id.personal_qrcode_layout:
+                intoQRCodeActivity();
                 break;
             case R.id.personal_sex_layout:
                 showSexDialog();
@@ -388,5 +389,10 @@ public class PersonalActivity extends BaseActivity implements IPersonalView {
                     }
                 })
                 .show();
+    }
+
+    @Override
+    public void intoQRCodeActivity() {
+        showActivity(this,QRCodeActivity.class);
     }
 }
