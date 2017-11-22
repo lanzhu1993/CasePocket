@@ -15,9 +15,10 @@ import cn.bmob.v3.BmobObject;
 public class EvaluationInfo extends BmobObject {
 
     private String attachments; // 评论图片列表
-    private String content;                  // 内容信息
-    private String userName;
-    private String userId;
+    private String content;     // 内容信息
+    private String userName;    //用户昵称
+    private String evalutionId; //评论id == 当前用户的id
+    private String avater;//头像
 
 
     public String getAttachments() {
@@ -44,13 +45,22 @@ public class EvaluationInfo extends BmobObject {
         this.userName = userName;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getEvalutionId() {
+        return evalutionId;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setEvalutionId(String evalutionId) {
+        this.evalutionId = evalutionId;
     }
+
+    public String getAvater() {
+        return avater;
+    }
+
+    public void setAvater(String avater) {
+        this.avater = avater;
+    }
+
 
 
 

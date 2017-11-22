@@ -20,7 +20,8 @@ import com.busilinq.casepocket.R;
 import com.busilinq.casepocket.adapter.GlideImageLoader;
 import com.busilinq.casepocket.base.BaseActivity;
 import com.busilinq.casepocket.bean.EvaluationInfo;
-import com.busilinq.casepocket.presenter.PostActiveViewPresenter;
+import com.busilinq.casepocket.bean.User;
+import com.busilinq.casepocket.presenter.PostActivePresenter;
 import com.busilinq.casepocket.utils.ImageUtils;
 import com.busilinq.casepocket.utils.ThreadManager;
 import com.busilinq.casepocket.utils.ToastUtils;
@@ -35,9 +36,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
+import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UploadFileListener;
 
 /**
@@ -60,7 +61,7 @@ public class PostActiveActivity extends BaseActivity implements IPostActiveView 
     EditText mmPostActiveActiveEt;
 
 
-    PostActiveViewPresenter presenter;
+    PostActivePresenter presenter;
 
     private List<String> mPhotoList = new ArrayList<>();
     private GalleryConfig galleryConfig;
@@ -84,11 +85,12 @@ public class PostActiveActivity extends BaseActivity implements IPostActiveView 
         public void handleMessage(Message msg) {
             switch (msg.what){
                 case UPLOAD_COMPELETED:
-                    saveActiveData();
+                    saveActiveData((String) msg.obj);
                     break;
             }
         }
     };
+    private String active;
 
 
     @Override
@@ -98,7 +100,7 @@ public class PostActiveActivity extends BaseActivity implements IPostActiveView 
 
     @Override
     public void initData() {
-        presenter = new PostActiveViewPresenter();
+        presenter = new PostActivePresenter();
         presenter.attachView(this);
         GridLayoutManager layoutManager = new GridLayoutManager(this,4);
         mPostActiveRecyclerView.setLayoutManager(layoutManager);
@@ -201,6 +203,7 @@ public class PostActiveActivity extends BaseActivity implements IPostActiveView 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        presenter.cancel();
         presenter.detachView();
     }
 
@@ -211,7 +214,7 @@ public class PostActiveActivity extends BaseActivity implements IPostActiveView 
 
     @Override
     public void postActiveData() {
-        String active = mmPostActiveActiveEt.getEditableText().toString().trim();
+        active = mmPostActiveActiveEt.getEditableText().toString().trim();
         if(TextUtils.isEmpty(active)){
             ToastUtils.showToast("请填写您的记录生活");
             return;
@@ -264,8 +267,21 @@ public class PostActiveActivity extends BaseActivity implements IPostActiveView 
     }
 
     @Override
-    public void saveActiveData() {
+    public void saveActiveData(String attachments) {
+        User user = BmobUser.getCurrentUser(User.class);
         EvaluationInfo info = new EvaluationInfo();
-
+        info.setUserName(user.getNickName());
+        info.setAvater(user.getAvater());
+        info.setAttachments(attachments);
+        info.setEvalutionId(user.getObjectId());
+        info.setContent(active);
+        presenter.saveEvaluationInfo(info);
     }
+
+    @Override
+    public void finishActivity() {
+        finish();
+    }
+
+
 }

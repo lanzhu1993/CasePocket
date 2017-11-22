@@ -2,6 +2,8 @@ package com.busilinq.casepocket.ui;
 
 
 import android.Manifest;
+import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 
@@ -9,8 +11,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 
 import android.view.MenuItem;
+import android.widget.ImageView;
 
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.busilinq.casepocket.R;
 import com.busilinq.casepocket.adapter.ViewPagerAdapter;
 import com.busilinq.casepocket.base.BaseActivity;
@@ -26,6 +31,7 @@ import com.busilinq.casepocket.update.UpdateManager;
 import com.busilinq.casepocket.utils.AppInfoUtils;
 
 import com.busilinq.casepocket.utils.ToastUtils;
+import com.lzy.ninegrid.NineGridView;
 import com.tbruyelle.rxpermissions.RxPermissions;
 
 import butterknife.Bind;
@@ -64,6 +70,24 @@ public class MainActivity extends BaseActivity{
         initFragmentData();
         mBottomNavigationView.setOnNavigationItemSelectedListener(mTabItemListener);
         initPerMission();
+        NineGridView.setImageLoader(new GlideImageLoader());
+    }
+
+    /** Glide 加载 */
+    private class GlideImageLoader implements NineGridView.ImageLoader {
+        @Override
+        public void onDisplayImage(Context context, ImageView imageView, String url) {
+            Glide.with(context).load(url)//
+                    .placeholder(R.drawable.shape_default_bg)//
+                    .error(R.drawable.shape_default_bg)//
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)//
+                    .into(imageView);
+        }
+
+        @Override
+        public Bitmap getCacheImage(String url) {
+            return null;
+        }
     }
 
     private void initFragmentData() {

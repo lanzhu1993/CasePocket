@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/item_active_avater_iv"
+            android:layout_width="@dimen/space_60"
+            android:layout_height="@dimen/space_60"
+            android:layout_marginTop="@dimen/space_20"
+            android:layout_marginLeft="@dimen/space_20"
+            android:layout_marginBottom="@dimen/space_20"/>
+
+        <TextView
+            android:id="@+id/item_active_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/space_36"
+            android:textColor="@color/color_333333"
+            android:text="懒猪"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/item_active_avater_iv"
+            android:layout_marginLeft="@dimen/space_20"/>
+
+    </RelativeLayout>
+
+   <TextView
+       android:id="@+id/item_active_content_tv"
+       android:layout_marginLeft="@dimen/space_100"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:textColor="@color/color_808080"
+       android:textSize="@dimen/space_30"
+       android:layout_marginRight="@dimen/space_20" />
+
+
+    <com.lzy.ninegrid.NineGridView
+        android:id="@+id/item_active_nineview"
+        android:layout_marginTop="@dimen/space_20"
+        android:layout_marginLeft="@dimen/space_100"
+        android:layout_marginRight="@dimen/space_20"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_20"
+        android:layout_marginLeft="@dimen/space_100"
+        android:layout_marginRight="@dimen/space_20">
+
+        <TextView
+            android:id="@+id/item_active_time_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/space_28"
+            android:textColor="@color/color_808080"
+            android:text="2017-01-01"
+            android:layout_centerVertical="true"/>
+
+
+        <TextView
+            android:id="@+id/item_active_delete_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/space_28"
+            android:textColor="@color/color_539cf2"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/item_active_time_tv"
+            android:text="删除"
+            android:layout_marginLeft="@dimen/space_20"
+            android:padding="@dimen/space_10"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

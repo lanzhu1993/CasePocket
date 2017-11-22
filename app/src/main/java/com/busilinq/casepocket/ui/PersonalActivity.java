@@ -249,6 +249,7 @@ public class PersonalActivity extends BaseActivity implements IPersonalView {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        presenter.cancel();
         presenter.detachView();
     }
 

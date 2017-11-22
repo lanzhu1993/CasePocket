@@ -16,5 +16,7 @@ public interface IPostActiveView extends IBaseView{
 
     void postActiveData();
 
-    void saveActiveData();
+    void saveActiveData(String attachments);
+
+    void finishActivity();
 }

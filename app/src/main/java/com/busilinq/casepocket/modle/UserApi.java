@@ -174,11 +174,11 @@ public class UserApi {
      * @param avater
      * @param listener
      */
-    public void saveAvater(String avater,final UpdateListener listener){
+    public Subscription saveAvater(String avater,final UpdateListener listener){
         User user = CPDbApi.getInstance().getUser();
         user.setAvater(avater);
         //saveUser(user);
-        user.update(listener);
+        return user.update(listener);
     }
 
     /**
@@ -186,11 +186,11 @@ public class UserApi {
      * @param sex
      * @param listener
      */
-    public void updateSex(String sex,final UpdateListener listener){
+    public Subscription updateSex(String sex,final UpdateListener listener){
         User user = CPDbApi.getInstance().getUser();
         user.setSex(sex);
         //saveUser(user);
-        user.update(listener);
+        return user.update(listener);
     }
 
 
@@ -199,11 +199,11 @@ public class UserApi {
      * @param birth
      * @param listener
      */
-    public void updateBirth(String birth,final UpdateListener listener){
+    public Subscription updateBirth(String birth,final UpdateListener listener) {
         User user = CPDbApi.getInstance().getUser();
         user.setBirth(birth);
+        return user.update(listener);
         //saveUser(user);
-        user.update(listener);
     }
 
     /**
@@ -211,11 +211,11 @@ public class UserApi {
      * @param name
      * @param listener
      */
-    public void updateNickNmae(String name,final UpdateListener listener){
+    public Subscription updateNickNmae(String name,final UpdateListener listener){
         User user = CPDbApi.getInstance().getUser();
         user.setNickName(name);
         //saveUser(user);
-        user.update(listener);
+        return user.update(listener);
     }
 
     public void saveUser(User user){

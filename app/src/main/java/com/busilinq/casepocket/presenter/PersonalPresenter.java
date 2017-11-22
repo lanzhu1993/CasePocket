@@ -13,6 +13,7 @@ import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
+import rx.Subscription;
 
 /**
  * 描述：
@@ -34,72 +35,76 @@ public class PersonalPresenter extends BasePresenter<IPersonalView> {
 
     public void saveAvater(String avater){
         LoadDialogView.showDialog(mBaseView.getContext(),"请稍等...");
-        userApi.saveAvater(avater, new UpdateListener() {
+        Subscription subscription = userApi.saveAvater(avater, new UpdateListener() {
             @Override
             public void done(BmobException e) {
-                if(null == e){
+                if (null == e) {
                     //更新UI
                     saveUser(BmobUser.getCurrentUser(User.class));
                     mBaseView.showUserInfo();
                     ToastUtils.showToast("修改成功");
-                }else{
+                } else {
                     ToastUtils.showToast("修改失败");
                 }
                 LoadDialogView.dismssDialog();
             }
         });
+        addSubscription(subscription);
     }
 
 
     public void updateSex(String sex) {
         LoadDialogView.showDialog(mBaseView.getContext(),"请稍等...");
-        userApi.updateSex(sex, new UpdateListener() {
+        Subscription subscription = userApi.updateSex(sex, new UpdateListener() {
             @Override
             public void done(BmobException e) {
-                if(null == e){
+                if (null == e) {
                     saveUser(BmobUser.getCurrentUser(User.class));
                     mBaseView.showUserInfo();
                     ToastUtils.showToast("修改成功");
-                }else{
+                } else {
                     ToastUtils.showToast("修改失败");
                 }
                 LoadDialogView.dismssDialog();
             }
         });
+        addSubscription(subscription);
     }
 
     public void updateNickName(String nickname){
         LoadDialogView.showDialog(mBaseView.getContext(),"请稍等...");
-        userApi.updateNickNmae(nickname, new UpdateListener() {
+        Subscription subscription = userApi.updateNickNmae(nickname, new UpdateListener() {
             @Override
             public void done(BmobException e) {
-                if(null == e){
+                if (null == e) {
                     saveUser(BmobUser.getCurrentUser(User.class));
                     mBaseView.showUserInfo();
                     ToastUtils.showToast("修改成功");
-                }else{
+                } else {
                     ToastUtils.showToast("修改失败");
                 }
                 LoadDialogView.dismssDialog();
             }
         });
+        addSubscription(subscription);
     }
 
     public void updateBirth(String birth){
         LoadDialogView.showDialog(mBaseView.getContext(),"请稍等...");
-        userApi.updateBirth(birth, new UpdateListener() {
+        Subscription subscription = userApi.updateBirth(birth, new UpdateListener() {
             @Override
             public void done(BmobException e) {
-                if(null == e){
+                if (null == e) {
                     saveUser(BmobUser.getCurrentUser(User.class));
                     mBaseView.showUserInfo();
                     ToastUtils.showToast("修改成功");
-                }else{
+                } else {
                     ToastUtils.showToast("修改失败");
                 }
                 LoadDialogView.dismssDialog();
             }
         });
+        addSubscription(subscription);
     }
 
     public void saveUser(User user){
