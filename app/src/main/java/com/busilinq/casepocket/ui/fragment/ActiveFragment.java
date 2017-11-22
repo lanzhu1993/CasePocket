@@ -166,4 +166,5 @@ public class ActiveFragment extends BaseFragment implements IActiveFragmentView,
     public void onLoadMoreRequested() {
         queryEvaluationInfo();
     }
+
 }

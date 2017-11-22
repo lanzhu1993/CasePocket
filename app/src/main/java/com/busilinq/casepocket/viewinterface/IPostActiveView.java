@@ -1,5 +1,6 @@
 package com.busilinq.casepocket.viewinterface;
 
+import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
 
 /**
@@ -19,4 +20,8 @@ public interface IPostActiveView extends IBaseView{
     void saveActiveData(String attachments);
 
     void finishActivity();
+
+    Activity getActivirt();
+
+    void showAvaterData();
 }

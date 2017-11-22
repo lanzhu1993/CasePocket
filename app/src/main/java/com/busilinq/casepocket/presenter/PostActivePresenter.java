@@ -52,7 +52,6 @@ public class PostActivePresenter extends BasePresenter<IPostActiveView> {
 
 
     public void saveEvaluationInfo(EvaluationInfo evaluationInfo){
-        LoadDialogView.showDialog(mBaseView.getContext(),"正在上传中...");
         Subscription subscription = activeApi.saveEvaluationInfo(evaluationInfo, new SaveListener<String>() {
             @Override
             public void done(String s, BmobException e) {

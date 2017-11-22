@@ -1,6 +1,7 @@
 package com.busilinq.casepocket.ui;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -16,6 +17,8 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.busilinq.casepocket.R;
 import com.busilinq.casepocket.adapter.GlideImageLoader;
 import com.busilinq.casepocket.base.BaseActivity;
@@ -40,6 +43,7 @@ import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.UploadFileListener;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * 描述 ：发布话题
@@ -56,6 +60,9 @@ public class PostActiveActivity extends BaseActivity implements IPostActiveView 
 
     @Bind(R.id.post_active_recyclerview)
     RecyclerView mPostActiveRecyclerView;
+
+    @Bind(R.id.post_active_avater_iv)
+    CircleImageView mPostActiveAvaterIv;
 
     @Bind(R.id.post_active_active_et)
     EditText mmPostActiveActiveEt;
@@ -91,6 +98,7 @@ public class PostActiveActivity extends BaseActivity implements IPostActiveView 
         }
     };
     private String active;
+    private User currentUser;
 
 
     @Override
@@ -107,6 +115,8 @@ public class PostActiveActivity extends BaseActivity implements IPostActiveView 
         presenter.initAdapter();
         initGallery();
         initGalleryConfig();
+        currentUser = BmobUser.getCurrentUser(User.class);
+        showAvaterData();
     }
 
     private void initGalleryConfig() {
@@ -268,12 +278,11 @@ public class PostActiveActivity extends BaseActivity implements IPostActiveView 
 
     @Override
     public void saveActiveData(String attachments) {
-        User user = BmobUser.getCurrentUser(User.class);
         EvaluationInfo info = new EvaluationInfo();
-        info.setUserName(user.getNickName());
-        info.setAvater(user.getAvater());
+        info.setUserName(currentUser.getNickName());
+        info.setAvater(currentUser.getAvater());
         info.setAttachments(attachments);
-        info.setEvalutionId(user.getObjectId());
+        info.setEvalutionId(currentUser.getObjectId());
         info.setContent(active);
         presenter.saveEvaluationInfo(info);
     }
@@ -281,6 +290,21 @@ public class PostActiveActivity extends BaseActivity implements IPostActiveView 
     @Override
     public void finishActivity() {
         finish();
+    }
+
+    @Override
+    public Activity getActivirt() {
+        return this;
+    }
+
+    @Override
+    public void showAvaterData() {
+        Glide.with(this)
+                .load(currentUser.getAvater())
+                .placeholder(R.mipmap.icon_add_avater)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .centerCrop()
+                .into(mPostActiveAvaterIv);
     }
 
 
