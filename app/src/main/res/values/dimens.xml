@@ -137,4 +137,5 @@
     <dimen name="space_180">180px</dimen>
     <dimen name="space_656">656px</dimen>
     <dimen name="space_110">110px</dimen>
+    <dimen name="space_76">76px</dimen>
 </resources>

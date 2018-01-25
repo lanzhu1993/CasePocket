@@ -3,10 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/splash_gif_iv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@mipmap/icon_welcome_bg2"
+        android:src="@drawable/icon_welcome_bg"
         android:scaleType="fitXY"/>
 
 </RelativeLayout>

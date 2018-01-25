@@ -7,6 +7,9 @@ import com.busilinq.casepocket.base.BaseActivity;
 import com.busilinq.casepocket.modle.PocketApi;
 import com.busilinq.casepocket.utils.ACache;
 
+import butterknife.Bind;
+import pl.droidsonroids.gif.GifImageView;
+
 /**
  * 描述：
  * <p>
@@ -17,7 +20,9 @@ import com.busilinq.casepocket.utils.ACache;
 
 public class SplashActivity extends BaseActivity {
 
-    private static final int SHOW_TIME_MIN = 3000;// 最小显示时间
+    @Bind(R.id.splash_gif_iv) GifImageView mGifImageView;
+
+    private static final int SHOW_TIME_MIN = 5000;// 最小显示时间
     private static final int SHOW_TIME_MIN_ZERO = 0;// 最小显示时间
 
     private Handler mHandler = new Handler();
@@ -42,7 +47,6 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     public void initUi() {
-
     }
 
 }
